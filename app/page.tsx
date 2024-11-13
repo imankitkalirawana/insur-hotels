@@ -7,6 +7,7 @@ import Footer from '@/components/sections/homepage/hero/footer';
 import InstagramMoments from '@/components/sections/homepage/hero/instagram-moments';
 import Testimonials from '@/components/sections/homepage/hero/testimonials';
 import { getHotels, getWebsite } from '@/functions/get';
+import { API_BASE_URL, isCaching } from '@/lib/config';
 import { Hotel, Website } from '@/lib/interface';
 import React, { useEffect } from 'react';
 
@@ -18,9 +19,16 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const website: Website = await getWebsite();
-      const hotels: Hotel[] = await getHotels();
+      const res = await fetch(`${API_BASE_URL}/website`, {
+        cache: isCaching ? 'default' : 'no-cache'
+      });
+      const website: Website = await res.json();
       setWebsite(website);
+
+      const resHotels = await fetch(`${API_BASE_URL}/hotels`, {
+        cache: isCaching ? 'default' : 'no-cache'
+      });
+      const hotels: Hotel[] = await resHotels.json();
       setHotels(hotels);
     };
     fetchData();
