@@ -9,17 +9,17 @@ interface Props {
 }
 
 export default function Banner({ website }: Props) {
-  const images = website.banner.images.map((image) => image.src);
+  const images = website?.banner?.images.map((image) => image.src);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images?.length);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [images?.length]);
 
   const fadeAnimation = {
     initial: { opacity: 0 },
@@ -39,7 +39,7 @@ export default function Banner({ website }: Props) {
           >
             <Image
               alt="banner"
-              src={images[currentIndex]}
+              src={images && images[currentIndex]}
               className="absolute top-0 aspect-video min-h-screen w-full object-cover"
               loading="lazy"
               width={1500}
@@ -63,20 +63,20 @@ export default function Banner({ website }: Props) {
               <h4
                 className="text-secondary"
                 dangerouslySetInnerHTML={{
-                  __html: website.banner.preText
+                  __html: website?.banner?.preText
                 }}
               />
               <div
                 className="text-[50px] font-black leading-[50px] lg:whitespace-nowrap lg:text-[100px] lg:leading-[100px]"
                 dangerouslySetInnerHTML={{
-                  __html: website.banner.heading
+                  __html: website?.banner?.heading
                 }}
               />
 
               <p
                 className="mt-4 text-lg font-light text-default-50"
                 dangerouslySetInnerHTML={{
-                  __html: website.banner.text
+                  __html: website?.banner?.text
                 }}
               />
             </div>

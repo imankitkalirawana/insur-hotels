@@ -86,9 +86,9 @@ export default function NewRoom({ hotels, roomType }: Props) {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        if (values.images.length > 0 && values.images[0].preview) {
+        if (values?.images?.length > 0 && values.images[0].preview) {
           setProgressMessage('Uploading files...');
-          for (let i = 0; i < values.images.length; i++) {
+          for (let i = 0; i < values?.images?.length; i++) {
             if (values.images[i].preview) {
               let filename = `hotels/${values.hotelId}/rooms/${slugify(values.title, { lower: true })}/room-${new Date().getTime()}.${values.images[i].file?.name.split('.').pop()}`;
               const formData = new FormData();
@@ -420,7 +420,7 @@ export default function NewRoom({ hotels, roomType }: Props) {
                   </div>
                 </div>
               ))}
-              {formik.values.images.length < 15 && (
+              {formik.values.images?.length < 15 && (
                 <div className="relative flex aspect-square w-full max-w-xs flex-col rounded-2xl border border-dashed border-default-500">
                   <div className="ga-2 absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center">
                     <Button

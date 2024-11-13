@@ -15,6 +15,7 @@ interface Props {
 }
 
 export default function InstagramMoments({ website, hotels }: Props) {
+  if (!website || !hotels) return null;
   return (
     <>
       <div className="relative flex min-h-screen w-full translate-y-0 flex-col items-center justify-between bg-cover px-2 py-12">
@@ -69,7 +70,7 @@ export default function InstagramMoments({ website, hotels }: Props) {
           <Iphone15Pro>
             <Suspense fallback={<div>Loading...</div>}>
               <video
-                src={website.instagrammableMoment.video.src}
+                src={website?.instagrammableMoment?.video?.src}
                 className="flex h-full object-cover"
                 muted
                 autoPlay
@@ -85,14 +86,14 @@ export default function InstagramMoments({ website, hotels }: Props) {
           <div className="mt-12 hidden flex-col justify-between md:flex md:max-w-[23%]">
             <div className="flex flex-col items-center gap-4 md:items-start">
               <p className="text-[#787373]">
-                {website.instagrammableMoment.text}
+                {website?.instagrammableMoment?.text}
               </p>
               <Button
                 color="primary"
                 size="lg"
                 endContent={<Icon icon="tabler:arrow-right" fontSize={20} />}
                 as={Link}
-                href={`https://${website.instagrammableMoment.url}`}
+                href={`https://${website?.instagrammableMoment?.url}`}
                 target="_blank"
                 radius="full"
               >
@@ -102,7 +103,7 @@ export default function InstagramMoments({ website, hotels }: Props) {
             <div className="mt-8 flex flex-col items-center gap-2 self-center rounded-xl bg-default p-4 pt-2 md:self-end">
               <span>Scan Here</span>
               <img
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${website.instagrammableMoment.url} `}
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${website?.instagrammableMoment?.url} `}
                 alt=""
                 width={100}
                 height={100}

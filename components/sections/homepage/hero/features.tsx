@@ -22,7 +22,7 @@ export default function Features({ website }: Props) {
           <div className="absolute left-[50%] top-[50%] hidden translate-x-[-50%] translate-y-[-50%] items-center justify-center rounded-full bg-primary text-xl text-white xs:flex xs:size-28 sm:size-36">
             Insur Hotels
           </div>
-          {website.facilities.slice(0, 4).map((item, index) => (
+          {website?.facilities?.slice(0, 4).map((item, index) => (
             <div
               key={item.name}
               className={cn(

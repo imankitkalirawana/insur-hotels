@@ -34,9 +34,9 @@ export default function Banner({ website }: Props) {
     },
     onSubmit: async (values) => {
       try {
-        if (values.banner.images.length > 0) {
+        if (values.banner.images?.length > 0) {
           setProgressMessage('Uploading files...');
-          for (let i = 0; i < values.banner.images.length; i++) {
+          for (let i = 0; i < values.banner.images?.length; i++) {
             if (values.banner.images[i].preview) {
               let filename = `website/banner/banner-${i}.${values.banner.images[i].file?.name.split('.').pop()}`;
               const previousFilename = `${values.banner.images[i].src.split('amazonaws.com/')[1]}`;
@@ -196,7 +196,7 @@ export default function Banner({ website }: Props) {
                 </div>
               </div>
             ))}
-            {formik.values.banner.images.length < 15 && (
+            {formik.values.banner.images?.length < 15 && (
               <div className="relative flex h-full min-h-40 w-full flex-col rounded-2xl border border-dashed border-default-500">
                 <div className="ga-2 absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center">
                   <Button

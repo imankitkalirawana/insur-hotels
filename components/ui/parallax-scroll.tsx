@@ -40,12 +40,12 @@ export const ParallaxScroll = ({
   );
   const translateThird = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
-  const third = Math.ceil(items.length / 3);
+  const third = Math.ceil(items?.length / 3);
 
-  const firstPart = items.slice(0, third);
-  const secondPart = items.slice(third, 2 * third);
-  const thirdPart = items.slice(2 * third);
-  // const fourthPart = items.slice(3 * third);
+  const firstPart = items?.slice(0, third);
+  const secondPart = items?.slice(third, 2 * third);
+  const thirdPart = items?.slice(2 * third);
+  // const fourthPart = items?.slice(3 * third);
 
   return (
     <div
@@ -62,7 +62,7 @@ export const ParallaxScroll = ({
         ref={gridRef}
       >
         <div className="grid gap-4 md:gap-10">
-          {firstPart.map((el, idx) => (
+          {firstPart?.map((el, idx) => (
             <motion.div
               style={{ y: translateFirst }}
               key={'grid-1' + idx}
@@ -85,7 +85,7 @@ export const ParallaxScroll = ({
           ))}
         </div>
         <div className="grid gap-4 md:grid md:gap-10">
-          {secondPart.map((el, idx) => (
+          {secondPart?.map((el, idx) => (
             <motion.div
               style={{ y: translateSecond }}
               key={'grid-2' + idx}
@@ -107,7 +107,7 @@ export const ParallaxScroll = ({
           ))}
         </div>
         <div className="hidden gap-4 md:gap-10 lg:grid">
-          {thirdPart.map((el, idx) => (
+          {thirdPart?.map((el, idx) => (
             <motion.div
               style={{ y: translateThird }}
               key={'grid-3' + idx}

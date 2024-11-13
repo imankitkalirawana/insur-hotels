@@ -28,8 +28,8 @@ export default function Testimonials({ website }: Props) {
           <ParallaxScroll
             items={
               isMobile
-                ? website.testimonials.slice(0, 6)
-                : website.testimonials.slice(0, 15)
+                ? website?.testimonials?.slice(0, 6)
+                : website?.testimonials?.slice(0, 15)
             }
           />
         </motion.div>

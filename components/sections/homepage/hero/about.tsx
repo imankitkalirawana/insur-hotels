@@ -30,7 +30,7 @@ export default function About({ website }: Props) {
             <p
               className="font-light md:text-2xl"
               dangerouslySetInnerHTML={{
-                __html: website.about.shortDescription
+                __html: website?.about?.shortDescription
               }}
             />
           </div>

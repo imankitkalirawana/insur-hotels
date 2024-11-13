@@ -1,3 +1,4 @@
+'use client';
 import Banner from '@/components/sections/homepage/banner/banner';
 import About from '@/components/sections/homepage/hero/about';
 import AppleCarousel from '@/components/sections/homepage/hero/apple-carousel';
@@ -7,11 +8,23 @@ import InstagramMoments from '@/components/sections/homepage/hero/instagram-mome
 import Testimonials from '@/components/sections/homepage/hero/testimonials';
 import { getHotels, getWebsite } from '@/functions/get';
 import { Hotel, Website } from '@/lib/interface';
-import React from 'react';
+import React, { useEffect } from 'react';
 
-export default async function Home() {
-  const hotels: Hotel[] = await getHotels();
-  const website: Website = await getWebsite();
+export default function Home() {
+  // const hotels: Hotel[] = await getHotels();
+  // const website: Website = await getWebsite();
+  const [website, setWebsite] = React.useState<Website>({} as Website);
+  const [hotels, setHotels] = React.useState<Hotel[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const website: Website = await getWebsite();
+      const hotels: Hotel[] = await getHotels();
+      setWebsite(website);
+      setHotels(hotels);
+    };
+    fetchData();
+  }, []);
 
   return (
     <>

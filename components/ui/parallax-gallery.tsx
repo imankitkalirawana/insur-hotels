@@ -32,7 +32,7 @@ export const ParallaxGallery = ({
   const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const translateThird = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
-  const third = Math.ceil(images.length / 3);
+  const third = Math.ceil(images?.length / 3);
 
   const firstPart = images.slice(0, third);
   const secondPart = images.slice(third, 2 * third);
@@ -54,18 +54,18 @@ export const ParallaxGallery = ({
     setSelectedIndex((prevIndex) => {
       const newIndex = prevIndex + 1;
       // Check if we reached the end
-      if (newIndex >= images.length - 1) {
+      if (newIndex >= images?.length - 1) {
         setCanScrollRight(false); // Disable "Next"
       }
       setCanScrollLeft(true); // Enable "Previous"
-      return newIndex % images.length;
+      return newIndex % images?.length;
     });
   };
 
   const handlePrevious = () => {
     setDirection(-1); // Moving backward
     setSelectedIndex((prevIndex) => {
-      const newIndex = prevIndex === 0 ? images.length - 1 : prevIndex - 1;
+      const newIndex = prevIndex === 0 ? images?.length - 1 : prevIndex - 1;
       // Check if we reached the start
       if (newIndex === 0) {
         setCanScrollLeft(false); // Disable "Previous"
